@@ -4,7 +4,6 @@ using namespace std;
 
 class Solution {
     public:
-  
       int findFloor(vector<int>& arr, int x) {
           int lo = 0 , hi = arr.size()-1;
           int ans = -1;
@@ -20,6 +19,13 @@ class Solution {
           return ans;
       }
 };  
+
+class Solution {
+    public:
+      int findFloor(vector<int>& arr, int x) {
+          return upper_bound(arr.begin(), arr.end(), x) - arr.begin() -1;
+      }
+};
 
 int main() {
     
