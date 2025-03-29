@@ -2,6 +2,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+// without heap using sorting
 class Solution {
     public:
         vector<string> findRelativeRanks(vector<int>& score) {
@@ -24,6 +25,36 @@ class Solution {
     
             return ans;
             
+        }
+};
+
+// with heap
+class Solution {
+    public:
+        vector<string> findRelativeRanks(vector<int>& score) {
+            priority_queue<pair<int,int>>pq;
+            int n = score.size();
+            for(int i=0; i<n; i++) {
+                pq.push({score[i], i});
+            }
+            int rank = 1;
+            vector<string>ans(n);
+            while(!pq.empty()) {
+                int ind = pq.top().second;
+                pq.pop();
+                if(rank == 1) {
+                    ans[ind] = "Gold Medal";
+                } else if(rank == 2) {
+                    ans[ind] = "Silver Medal";
+                } else if(rank == 3) {
+                    ans[ind] = "Bronze Medal";
+                } else {
+                    string rankStr = to_string(rank);
+                    ans[ind] = rankStr;
+                }
+                rank++;
+            }
+            return ans;
         }
 };
 
