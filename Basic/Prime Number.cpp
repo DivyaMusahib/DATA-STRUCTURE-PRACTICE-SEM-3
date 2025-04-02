@@ -12,6 +12,23 @@ class Solution {
       }
 };
 
+class Solution {
+    public:
+      bool isPrime(int n) {
+          // seive 
+          vector<bool>arr(n+1, true);
+          arr[0] = arr[1] = false;
+          for(int i=2; i*i <= n; i++) {
+              if(arr[i] == true) {
+                for(int j=i*i;j<=n; j+=i) {
+                    arr[j] =false;
+                }
+              }
+          }
+          return arr[n];
+      }
+};
+
 int main() {
 
 }
